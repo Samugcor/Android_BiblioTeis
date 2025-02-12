@@ -3,47 +3,40 @@ package com.example.biblioteis;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.graphics.Insets;
-import androidx.core.view.ViewCompat;
-import androidx.core.view.WindowInsetsCompat;
 
 import com.example.biblioteis.API.models.User;
 import com.example.biblioteis.API.repository.BookRepository;
 import com.example.biblioteis.API.repository.UserRepository;
 
 import java.util.List;
+import java.util.Objects;
 
 public class LoginActivity extends AppCompatActivity {
 
 
-    ImageView iv;
-    TextView tvError, tvEmail, tvPassw;
-    Button btn;
+    ImageView img;
+    EditText etEmail, etPassw;
+    TextView tvEmailError, tvPasswError;
+    Button btnLogin, btnSignin;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        EdgeToEdge.enable(this);
         setContentView(R.layout.activity_login);
-        ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main), (v, insets) -> {
-            Insets systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars());
-            v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
-            return insets;
-        });
 
+        img = findViewById(R.id.img);
+        etEmail = findViewById(R.id.et_email);
+        etPassw = findViewById(R.id.et_password);
+        tvEmailError = findViewById(R.id.tv_errorEmail);
+        tvPasswError = findViewById(R.id.tv_errorPassword);
+        btnLogin = findViewById(R.id.btn_login);
 
-        iv = findViewById(R.id.iv1);
-        tvError = findViewById(R.id.textViewError);
-        tvEmail = findViewById(R.id.textView2);
-        tvPassw = findViewById(R.id.textView3);
-        btn = findViewById(R.id.button);
-
-        btn.setOnClickListener(new View.OnClickListener() {
+        btnLogin.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 doLogin();
@@ -60,8 +53,20 @@ public class LoginActivity extends AppCompatActivity {
             @Override
             public void onSuccess(List<User> result) {
                 for(User u: result){
-                    if(u.getEmail() == tvEmail.getText()){
+                    if(Objects.equals(u.getEmail(), etEmail.getText().toString())){
+                        tvPasswError.setVisibility(View.INVISIBLE);
 
+                        if(Objects.equals(u.getPasswordHash(), etPassw.getText().toString())) {
+                            tvPasswError.setVisibility(View.INVISIBLE);
+
+
+                        }
+                        else {
+                            tvPasswError.setVisibility(View.VISIBLE);
+                        }
+                    }
+                    else {
+                        tvEmailError.setVisibility(View.VISIBLE);
                     }
                 }
             }

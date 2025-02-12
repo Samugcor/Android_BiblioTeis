@@ -1,3 +1,5 @@
 <resources>
     <string name="app_name">BiblioTeis</string>
+    <string name="email_incorrecto">Email incorrecto</string>
+    <string name="contrase_a_incorrecta">Contraseña incorrecta</string>
 </resources>
