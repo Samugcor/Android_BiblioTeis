@@ -2,6 +2,7 @@ package com.example.biblioteis.API.retrofit;
 
 import com.example.biblioteis.API.models.Book;
 import com.example.biblioteis.API.models.BookLending;
+import com.example.biblioteis.API.models.BookLendingForm;
 import com.example.biblioteis.API.models.User;
 
 import java.util.List;
@@ -52,7 +53,7 @@ public interface ApiService {
     Call<BookLending> getLending(@Path("id") int id);
 
     @POST("booklending")
-    Call<BookLending> lendBook(@Body BookLending lending);
+    Call<BookLending> lendBook(@Body BookLendingForm lending);
 
     @PUT("booklending/{id}/return")
     Call<Void> returnBook(@Path("id") int id);
