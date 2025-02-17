@@ -3,15 +3,18 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
+    android:layout_height="wrap_content"
     tools:context=".BookFragment">
 
     <ImageView
         android:id="@+id/img_portada"
-        android:layout_width="wrap_content"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
+        app:layout_constraintWidth_percent="0.28"
         android:layout_marginStart="16dp"
         android:layout_marginTop="16dp"
+        android:layout_marginBottom="16dp"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         tools:src="@tools:sample/avatars" />
@@ -23,7 +26,7 @@
         android:layout_marginStart="20dp"
         android:layout_marginTop="16dp"
         android:text="Titulo cualquiera"
-        android:textSize="24sp"
+        android:textSize="20sp"
         app:layout_constraintStart_toEndOf="@+id/img_portada"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -34,6 +37,7 @@
         android:layout_marginStart="20dp"
         android:layout_marginTop="8dp"
         android:text=" Autor De Nombre Aleatorio"
+        android:textSize="12sp"
         app:layout_constraintStart_toEndOf="@+id/img_portada"
         app:layout_constraintTop_toBottomOf="@+id/tv_titulo" />
 </androidx.constraintlayout.widget.ConstraintLayout>
