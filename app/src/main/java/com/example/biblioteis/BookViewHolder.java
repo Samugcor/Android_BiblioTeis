@@ -5,17 +5,28 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
+import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.recyclerview.widget.RecyclerView;
 
 public class BookViewHolder extends RecyclerView.ViewHolder {
     ImageView imgPortada;
     TextView tvTitulo, tvAutor;
+    ConstraintLayout clfragment;
 
     public BookViewHolder(View view) {
         super(view);
         this.imgPortada = view.findViewById(R.id.img_portada);
         this.tvTitulo = view.findViewById(R.id.tv_titulo);
         this.tvAutor = view.findViewById(R.id.tv_autor);
+        this.clfragment = view.findViewById(R.id.cl_fragmentbook);
+    }
+
+    public ConstraintLayout getClfragment() {
+        return clfragment;
+    }
+
+    public void setClfragment(ConstraintLayout clfragment) {
+        this.clfragment = clfragment;
     }
 
     public ImageView getImgPortada() {
