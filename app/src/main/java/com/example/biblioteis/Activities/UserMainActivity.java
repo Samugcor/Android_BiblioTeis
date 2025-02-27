@@ -1,26 +1,19 @@
-package com.example.biblioteis;
+package com.example.biblioteis.Activities;
 
 import android.os.Bundle;
-import android.widget.Toast;
 
-import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.graphics.Insets;
-import androidx.core.view.ViewCompat;
-import androidx.core.view.WindowInsetsCompat;
-import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.example.biblioteis.API.models.Book;
-import com.example.biblioteis.API.repository.BookRepository;
+import com.example.biblioteis.BookAdapter;
+import com.example.biblioteis.R;
 import com.example.biblioteis.viewModels.UserMainViewModel;
 
 import java.util.ArrayList;
-import java.util.List;
 
-public class UserMain extends AppCompatActivity {
+public class UserMainActivity extends AppCompatActivity {
 
     RecyclerView rvLibrosDisponibles;
     //MutableLiveData<List<Book>> listaLibros = new MutableLiveData<List<Book>>();

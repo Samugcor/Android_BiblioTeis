@@ -5,17 +5,21 @@
     android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".UserMain">
+    tools:context=".Activities.UserMainActivity">
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/rv_libros_disponibles"
-        android:layout_width="365dp"
-        android:layout_height="606dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView"
-        app:layout_constraintVertical_bias="0.611" />
+        app:layout_constraintVertical_bias="0.073"
+        android:padding="16dp"
+        android:clipToPadding="false"/>
 
     <TextView
         android:id="@+id/textView"

@@ -1,4 +1,4 @@
-package com.example.biblioteis;
+package com.example.biblioteis.Activities;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -14,6 +14,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import com.example.biblioteis.API.models.User;
 import com.example.biblioteis.API.repository.BookRepository;
 import com.example.biblioteis.API.repository.UserRepository;
+import com.example.biblioteis.R;
 
 import java.util.List;
 import java.util.Objects;
@@ -62,7 +63,7 @@ public class LoginActivity extends AppCompatActivity {
                         if(Objects.equals(u.getPasswordHash(), etPassw.getText().toString())) {
                             tvEmailPasswError.setVisibility(View.INVISIBLE);
                             System.out.println("Usuario logeado, pasando a la siguiente view");
-                            Intent userProfile=new Intent(v.getContext(), UserMain.class);
+                            Intent userProfile=new Intent(v.getContext(), UserMainActivity.class);
                             startActivity(userProfile);
 
                         }

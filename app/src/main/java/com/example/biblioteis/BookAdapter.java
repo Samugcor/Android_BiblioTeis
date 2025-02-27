@@ -1,26 +1,24 @@
 package com.example.biblioteis;
 
-import static androidx.activity.result.ActivityResultCallerKt.registerForActivityResult;
+import static androidx.core.content.ContextCompat.startActivity;
 
 import android.content.Intent;
-import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import androidx.activity.result.ActivityResult;
-import androidx.activity.result.ActivityResultCallback;
-import androidx.activity.result.ActivityResultLauncher;
-import androidx.activity.result.contract.ActivityResultContracts;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
+
 
 import com.example.biblioteis.API.models.Book;
 import com.example.biblioteis.API.repository.BookRepository;
 import com.example.biblioteis.API.repository.ImageRepository;
+import com.example.biblioteis.Activities.DetallesLibroActivity;
 
-import java.io.IOException;
+
+
 import java.util.List;
 
 import okhttp3.ResponseBody;
@@ -54,7 +52,7 @@ public class BookAdapter extends RecyclerView.Adapter {
 
             @Override
             public void onFailure(Throwable t) {
-
+                bvh.getImgPortada().setImageResource(R.drawable.image_not_available);
             }
         });
 
@@ -62,7 +60,8 @@ public class BookAdapter extends RecyclerView.Adapter {
         bvh.getClfragment().setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent detalles = new Intent(v.getContext(), LoginActivity.class);
+                Intent detallesLibro = new Intent(v.getContext(), DetallesLibroActivity.class);
+                startActivity(v.getContext(), detallesLibro, null);
 
             }
         });
