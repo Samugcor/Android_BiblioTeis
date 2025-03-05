@@ -1,4 +1,4 @@
-package com.example.biblioteis.Activities;
+package com.example.biblioteis.Activities.UserMain;
 
 import android.os.Bundle;
 
@@ -9,7 +9,6 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.biblioteis.BookAdapter;
 import com.example.biblioteis.R;
-import com.example.biblioteis.viewModels.UserMainViewModel;
 
 import java.util.ArrayList;
 

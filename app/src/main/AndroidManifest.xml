@@ -19,7 +19,7 @@
             android:name=".Activities.DetallesLibroActivity"
             android:exported="false" />
         <activity
-            android:name=".Activities.UserMainActivity"
+            android:name=".Activities.UserMain.UserMainActivity"
             android:exported="false" />
         <activity
             android:name=".Activities.LoginActivity"
