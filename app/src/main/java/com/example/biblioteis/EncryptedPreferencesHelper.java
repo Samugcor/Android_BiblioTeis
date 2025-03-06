@@ -7,6 +7,7 @@ import androidx.security.crypto.EncryptedSharedPreferences;
 import androidx.security.crypto.MasterKey;
 
 import com.example.biblioteis.API.models.BookLending;
+import com.example.biblioteis.API.models.User;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 
@@ -17,7 +18,8 @@ import java.util.List;
 *
 * Los datos que queremos guardar del usuario serían:
 *  - id
-*  - libros prestados
+*  - name
+*  - email
 * */
 public class EncryptedPreferencesHelper {
     /*Este metodo recupera el archivo de las encrypted shared preferences y nos devuelve
@@ -45,6 +47,23 @@ public class EncryptedPreferencesHelper {
             return null;
         }
     }
+//🔽 GUARDAR Y LEER ALL DATA
+    public static void saveAllData(Context context, User user) {
+        SharedPreferences prefs = getEncryptedSharedPreferences(context);
+        if (prefs != null) {
+            prefs.edit().putInt("user_id", user.getId()).apply();
+            prefs.edit().putString("user_name", user.getName()).apply();
+            prefs.edit().putString("user_email", user.getEmail()).apply();
+        }
+    }
+    public static User getUserData(Context context) {
+        SharedPreferences prefs = getEncryptedSharedPreferences(context);
+        User currentUser=new User();
+        currentUser.setId(prefs.getInt("user_id", -1));
+        currentUser.setName(prefs.getString("user_name",""));
+        currentUser.setEmail(prefs.getString("user_email",""));
+        return currentUser;
+    }
 
 //🔽 GUARDAR Y LEER ID
     public static void saveUserId(Context context, int userId) {
@@ -70,7 +89,7 @@ public class EncryptedPreferencesHelper {
     * por lo que lo mejor es transformar estos datos a una String JSON. Para manejar de forma más sencilla
     * la conversión de datos vamos a añadir la dependencia */
 
-    public static void saveLendedBooks(Context context, List<BookLending> books) {
+    /*public static void saveLendedBooks(Context context, List<BookLending> books) {
         SharedPreferences prefs = getEncryptedSharedPreferences(context);
         if (prefs != null) {
             Gson gson = new Gson();
@@ -89,13 +108,13 @@ public class EncryptedPreferencesHelper {
                 Type type = new TypeToken<List<BookLending>>() {}.getType();
                 return gson.fromJson(json, type);
                 //🟡 Explicación Type y TypeToken
-                /* In Java, generic types (like List<LendedBook>) lose their type information at runtime due to type erasure.
-                * TypeToken<T> is a class provided by Gson that helps retain generic type information.
-                * new TypeToken<List<LendedBook>>() {}.getType(); creates a Type object representing List<LendedBook>.
-                * */
+                //In Java, generic types (like List<LendedBook>) lose their type information at runtime due to type erasure.
+                //TypeToken<T> is a class provided by Gson that helps retain generic type information.
+                //new TypeToken<List<LendedBook>>() {}.getType(); creates a Type object representing List<LendedBook>.
+
             }
         }
         return null;
-    }
+    }*/
 
 }

@@ -15,8 +15,8 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.example.biblioteis.API.models.Book;
 import com.example.biblioteis.API.repository.BookRepository;
 import com.example.biblioteis.API.repository.ImageRepository;
-import com.example.biblioteis.Activities.DetallesLibroActivity;
-
+import com.example.biblioteis.Activities.DetallesLibro.DetallesLibroActivity;
+import com.example.biblioteis.Activities.DetallesLibro.DetallesLibroViewModel;
 
 
 import java.util.List;
@@ -56,10 +56,11 @@ public class BookAdapter extends RecyclerView.Adapter {
             }
         });
 
-
         bvh.getClfragment().setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                DetallesLibroViewModel dvm = new DetallesLibroViewModel();
+                dvm.setLibroSelecionado(book);
                 Intent detallesLibro = new Intent(v.getContext(), DetallesLibroActivity.class);
                 startActivity(v.getContext(), detallesLibro, null);
 

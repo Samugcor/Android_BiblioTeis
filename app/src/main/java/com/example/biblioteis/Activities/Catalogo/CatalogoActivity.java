@@ -1,4 +1,4 @@
-package com.example.biblioteis.Activities.UserMain;
+package com.example.biblioteis.Activities.Catalogo;
 
 import android.os.Bundle;
 
@@ -12,21 +12,21 @@ import com.example.biblioteis.R;
 
 import java.util.ArrayList;
 
-public class UserMainActivity extends AppCompatActivity {
+public class CatalogoActivity extends AppCompatActivity {
 
     RecyclerView rvLibrosDisponibles;
     //MutableLiveData<List<Book>> listaLibros = new MutableLiveData<List<Book>>();
-    UserMainViewModel vm;
+    CatalogoViewModel vm;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_user_main);
+        setContentView(R.layout.activity_catalogo);
 
 
         rvLibrosDisponibles =findViewById(R.id.rv_libros_disponibles);
         rvLibrosDisponibles.setLayoutManager(new LinearLayoutManager(this));
 
-        vm  = new ViewModelProvider(this).get(UserMainViewModel.class);
+        vm  = new ViewModelProvider(this).get(CatalogoViewModel.class);
 
 
         vm.listaLibros.observe(this,  bs -> {

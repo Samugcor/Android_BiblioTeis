@@ -1,4 +1,4 @@
-package com.example.biblioteis.Activities.UserMain;
+package com.example.biblioteis.Activities.Catalogo;
 
 import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
@@ -8,7 +8,7 @@ import com.example.biblioteis.API.repository.BookRepository;
 
 import java.util.List;
 
-public class UserMainViewModel extends ViewModel {
+public class CatalogoViewModel extends ViewModel {
 
     private BookRepository bookRepository = new BookRepository();
 
