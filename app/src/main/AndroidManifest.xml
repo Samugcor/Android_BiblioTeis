@@ -16,6 +16,9 @@
         android:theme="@style/Theme.BiblioTeis"
         tools:targetApi="31">
         <activity
+            android:name=".Activities.PerfilUsuario.UserProfileActivity"
+            android:exported="false" />
+        <activity
             android:name=".Activities.DetallesLibro.DetallesLibroActivity"
             android:exported="false" />
         <activity

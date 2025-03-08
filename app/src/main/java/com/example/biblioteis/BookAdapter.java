@@ -24,6 +24,8 @@ import java.util.List;
 import okhttp3.ResponseBody;
 
 public class BookAdapter extends RecyclerView.Adapter {
+    public static final String BOOK_ID = "bookId";
+
     List<Book> libros;
 
 
@@ -59,9 +61,8 @@ public class BookAdapter extends RecyclerView.Adapter {
         bvh.getClfragment().setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                DetallesLibroViewModel dvm = new DetallesLibroViewModel();
-                dvm.setLibroSelecionado(book);
                 Intent detallesLibro = new Intent(v.getContext(), DetallesLibroActivity.class);
+                detallesLibro.putExtra(BOOK_ID,book.getId());
                 startActivity(v.getContext(), detallesLibro, null);
 
             }

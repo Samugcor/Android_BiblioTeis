@@ -22,6 +22,12 @@ import java.util.List;
 *  - email
 * */
 public class EncryptedPreferencesHelper {
+
+    public static final String USER_REGISTRO = "user_registro";
+    public static final String USER_EMAIL = "user_email";
+    public static final String USER_NAME = "user_name";
+    public static final String USER_ID = "user_id";
+
     /*Este metodo recupera el archivo de las encrypted shared preferences y nos devuelve
     * el objeto Shared Preferences correspondiente. De esta forma podemos usarlo para otros métodos.*/
     private static SharedPreferences getEncryptedSharedPreferences(Context context) {
@@ -51,17 +57,19 @@ public class EncryptedPreferencesHelper {
     public static void saveAllData(Context context, User user) {
         SharedPreferences prefs = getEncryptedSharedPreferences(context);
         if (prefs != null) {
-            prefs.edit().putInt("user_id", user.getId()).apply();
-            prefs.edit().putString("user_name", user.getName()).apply();
-            prefs.edit().putString("user_email", user.getEmail()).apply();
+            prefs.edit().putInt(USER_ID, user.getId()).apply();
+            prefs.edit().putString(USER_NAME, user.getName()).apply();
+            prefs.edit().putString(USER_EMAIL, user.getEmail()).apply();
+            prefs.edit().putString(USER_REGISTRO, user.getDateJoined()).apply();
         }
     }
     public static User getUserData(Context context) {
         SharedPreferences prefs = getEncryptedSharedPreferences(context);
         User currentUser=new User();
-        currentUser.setId(prefs.getInt("user_id", -1));
-        currentUser.setName(prefs.getString("user_name",""));
-        currentUser.setEmail(prefs.getString("user_email",""));
+        currentUser.setId(prefs.getInt(USER_ID, -1));
+        currentUser.setName(prefs.getString(USER_NAME,""));
+        currentUser.setEmail(prefs.getString(USER_EMAIL,""));
+        currentUser.setDateJoined(prefs.getString(USER_REGISTRO,""));
         return currentUser;
     }
 
@@ -69,13 +77,13 @@ public class EncryptedPreferencesHelper {
     public static void saveUserId(Context context, int userId) {
         SharedPreferences prefs = getEncryptedSharedPreferences(context);
         if (prefs != null) {
-            prefs.edit().putInt("user_id", userId).apply();
+            prefs.edit().putInt(USER_ID, userId).apply();
         }
     }
 
     public static int getUserId(Context context) {
         SharedPreferences prefs = getEncryptedSharedPreferences(context);
-        return prefs != null ? prefs.getInt("user_id", -1) : -1;
+        return prefs != null ? prefs.getInt(USER_ID, -1) : -1;
     }
 
 //🔽 GUARDAR Y LEER BOOKLENDINGS
