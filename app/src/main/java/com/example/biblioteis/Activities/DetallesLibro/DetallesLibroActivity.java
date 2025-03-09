@@ -10,19 +10,21 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.content.ContextCompat;
 import androidx.lifecycle.ViewModelProvider;
 
 import com.example.biblioteis.API.models.Book;
 import com.example.biblioteis.API.repository.BookRepository;
 import com.example.biblioteis.API.repository.ImageRepository;
 import com.example.biblioteis.BookAdapter;
+import com.example.biblioteis.EncryptedPreferencesHelper;
 import com.example.biblioteis.R;
 
 import okhttp3.ResponseBody;
 
 public class DetallesLibroActivity extends AppCompatActivity {
     //Variables Vistas
-    Button btnVolver;
+    Button btnVolver,btnPrestar,btnDevolver;
     ImageView imgPortada;
     TextView tvTitulo,tvPublicacion,tvAutor,tvSipnopsis,tvIsbn;
 
@@ -41,6 +43,8 @@ public class DetallesLibroActivity extends AppCompatActivity {
 
         //Asignamos las views
         btnVolver=findViewById(R.id.btn_detalles_volver);
+        btnPrestar=findViewById(R.id.btn_detalles_prestar);
+        btnDevolver=findViewById(R.id.btn_detalles_devolver);
         imgPortada=findViewById(R.id.img_detalles_portada);
         tvTitulo=findViewById(R.id.tv_detalles_titulo);
         tvPublicacion=findViewById(R.id.tv_detalles_publicacion);
@@ -82,6 +86,25 @@ public class DetallesLibroActivity extends AppCompatActivity {
                         imgPortada.setImageResource(R.drawable.image_not_available);
                     }
                 });
+
+                //Activamos y desactivamos los botones
+                //Si no está disponible
+                if (!libro.isAvailable()) {
+                    btnPrestar.setEnabled(false);
+                    btnPrestar.setBackgroundColor(ContextCompat.getColor(this, R.color.moradoAndroidDisabled));
+                    //Si no tenemos el libro
+                    if(!detallesViewModel.userHasBook(EncryptedPreferencesHelper.getUserId(getApplicationContext()))){
+                        btnDevolver.setEnabled(false);
+                        btnDevolver.setBackgroundColor(ContextCompat.getColor(this, R.color.moradoAndroidDisabled));
+                    }
+                    else {
+                        btnDevolver.setEnabled(true);
+                        btnDevolver.setBackgroundColor(ContextCompat.getColor(this, R.color.moradoAndroid));
+                    }
+                }else {
+                    btnPrestar.setEnabled(true);
+                    btnPrestar.setBackgroundColor(ContextCompat.getColor(this, R.color.moradoAndroid));
+                }
             }
 
         });
@@ -112,6 +135,14 @@ public class DetallesLibroActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 finish();
+            }
+        });
+
+        btnPrestar.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Toast.makeText(DetallesLibroActivity.this, "Has pulsado prestar", Toast.LENGTH_SHORT).show();
+
             }
         });
 
